@@ -1,5 +1,14 @@
 <script setup lang="ts">
 const breadcrumbs = useBreadcrumbs();
+
+useHead({
+  script: [
+    {
+      innerHTML: getThemeInitScript(),
+      tagPosition: "head",
+    },
+  ],
+});
 </script>
 
 <template>

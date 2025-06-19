@@ -1,3 +1,5 @@
+import type { DocsCollectionItem } from "@nuxt/content";
+
 export const useDocsNavigation = () => {
   const { data: pages } = useAsyncData("doc-pages", () => {
     return queryCollection("docs").order("order", "ASC").all();
@@ -20,10 +22,23 @@ export const useDocsNavigation = () => {
       : null
   );
 
+  const grouped = computed(() => {
+    const groups: Record<string, DocsCollectionItem[]> = {};
+
+    pages.value?.forEach((page) => {
+      const group = page.group || "Ungrouped";
+      if (!groups[group]) groups[group] = [];
+      groups[group].push(page);
+    });
+
+    return groups;
+  });
+
   return {
     pages,
     currentIndex,
     prevPage,
     nextPage,
+    grouped,
   };
 };

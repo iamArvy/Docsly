@@ -9,15 +9,16 @@ import {
 
 const { isCurrentRoute } = useNav();
 
-const { pages } = useDocsNavigation();
-// if (isProjectIndex) {
-
-// }
+const { grouped } = useDocsNavigation();
 </script>
 
 <template>
-  <SidebarGroup class="px-2 py-0 mb-2">
-    <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+  <SidebarGroup
+    v-for="(pages, group) in grouped"
+    :key="group"
+    class="px-2 py-0 mb-2"
+  >
+    <SidebarGroupLabel class="capitalize">{{ group }}</SidebarGroupLabel>
     <SidebarMenu>
       <SidebarMenuItem v-for="item in pages" :key="item.id">
         <SidebarMenuButton
@@ -26,36 +27,11 @@ const { pages } = useDocsNavigation();
           :is-active="isCurrentRoute(item.path)"
         >
           <NuxtLink :href="item.path">
+            <Icon name="lucide:link" width="50" />
             <span>{{ item.title }}</span>
           </NuxtLink>
         </SidebarMenuButton>
       </SidebarMenuItem>
     </SidebarMenu>
   </SidebarGroup>
-  <!-- <SidebarGroup class="px-2 py-0 mb-2"> -->
-  <!-- <SidebarGroupLabel>Contact</SidebarGroupLabel>
-    <SidebarMenu>
-      <SidebarMenuItem v-for="item in contacts" :key="item.text">
-        <SidebarMenuButton as-child :tooltip="item.text">
-          <NuxtLink :href="item.url" target="_blank">
-            <Icon v-if="item.icon" :name="item.icon" width="50" />
-            <span>{{ item.text }}</span>
-          </NuxtLink>
-        </SidebarMenuButton>
-      </SidebarMenuItem>
-    </SidebarMenu>
-  </SidebarGroup> -->
-  <!-- <SidebarGroup class="px-2 py-0">
-    <SidebarGroupLabel>Socials</SidebarGroupLabel>
-    <SidebarMenu>
-      <SidebarMenuItem v-for="item in socials" :key="item.platform">
-        <SidebarMenuButton as-child :tooltip="item.platform">
-          <NuxtLink :href="item.url" target="_blank">
-            <Icon v-if="item.icon" :name="item.icon" width="50" />
-            <span>{{ item.platform }}</span>
-          </NuxtLink>
-        </SidebarMenuButton>
-      </SidebarMenuItem>
-    </SidebarMenu>
-  </SidebarGroup> -->
 </template>
