@@ -43,11 +43,13 @@ defineProps<{
       <template v-for="(item, index) in breadcrumbs" :key="index">
         <BreadcrumbItem class="capitalize">
           <template v-if="index === breadcrumbs.length - 1">
-            <BreadcrumbPage class="font-bold">{{ item }}</BreadcrumbPage>
+            <BreadcrumbPage class="font-bold">{{
+              item.replace("-", " ")
+            }}</BreadcrumbPage>
           </template>
           <template v-else>
             <BreadcrumbLink as-child>
-              {{ item }}
+              {{ item.replace("-", " ") }}
             </BreadcrumbLink>
           </template>
         </BreadcrumbItem>

@@ -12,7 +12,7 @@ const { currentSection } = useSectionObserver(contentRef);
 const { prevPage, nextPage } = useDocsNavigation();
 useAppTitle(page.value?.title as string);
 const breadcrumbs = useBreadcrumbs();
-breadcrumbs.value = [page.value.group, page.value.title.replace("-", "")];
+breadcrumbs.value = [page.value.group, page.value.title];
 </script>
 
 <template>

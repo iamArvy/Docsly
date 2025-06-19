@@ -18,7 +18,9 @@ const { grouped } = useDocsNavigation();
     :key="group"
     class="px-2 py-0 mb-2"
   >
-    <SidebarGroupLabel class="capitalize">{{ group }}</SidebarGroupLabel>
+    <SidebarGroupLabel class="capitalize">{{
+      group.replace("-", " ")
+    }}</SidebarGroupLabel>
     <SidebarMenu>
       <SidebarMenuItem v-for="item in pages" :key="item.id">
         <SidebarMenuButton
@@ -28,7 +30,7 @@ const { grouped } = useDocsNavigation();
         >
           <NuxtLink :href="item.path">
             <Icon name="lucide:link" width="50" />
-            <span>{{ item.title }}</span>
+            <span>{{ item.title.replace("-", " ") }}</span>
           </NuxtLink>
         </SidebarMenuButton>
       </SidebarMenuItem>
