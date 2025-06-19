@@ -21,6 +21,19 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
   routeRules: {
-    "/": { redirect: "/docs" },
+    "/": { redirect: "/docs/overview" },
+  },
+  content: {
+    build: {
+      markdown: {
+        toc: {
+          depth: 2,
+          searchDepth: 2,
+        },
+        highlight: {
+          theme: "github-light",
+        },
+      },
+    },
   },
 });
