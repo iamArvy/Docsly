@@ -31,7 +31,7 @@ export default defineNuxtConfig({
           searchDepth: 2,
         },
         highlight: {
-          theme: "github-light",
+          theme: "github-dark",
         },
       },
     },
